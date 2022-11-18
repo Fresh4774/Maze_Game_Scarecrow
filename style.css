@@ -1,0 +1,251 @@
+html {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background-color: forestgreen;
+  background-image: 
+    url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
+  font-family: system-ui;
+  font-size: 12px;
+  text-align: center;
+}
+
+body {
+  width: 100%;
+  max-width: 700px;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+body:after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: orange;
+  z-index: 1000;
+  mix-blend-mode: color-burn;
+  opacity: .35;
+}
+
+#corn_camera {
+  width: 100%;
+/*     width: 350px; */
+  aspect-ratio: 1 / 1;
+  position: relative;
+  border-radius: 1rem;
+  background-color: rgba(0,0,0,.05);
+  overflow: hidden;
+}
+
+#corn_maze {
+  width: 1000px;
+  aspect-ratio: 1 / 1;
+  position: absolute;
+  border-radius: 1rem;
+  transition: .25s;  
+  background-color: #D8A57C;
+  background-image: 
+    url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
+}
+
+#child_of_the_corn {
+  width: 100px;
+  aspect-ratio: 1 / 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 500;
+  transition: .25s;
+}
+
+#child_of_the_corn:before {
+  content:'';
+  width: 100%;
+  aspect-ratio: 1 / .2;
+  position: absolute;
+  left: 0;
+  top: 90%;
+  background-color: rgba(0,0,0,.15);
+  background-size: 100% 100%;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: s_bounce .9s steps(3) infinite alternate;
+  transform: scale(.8);
+}
+@keyframes s_bounce {
+  100% { transform: scale(.4);  }
+}
+#child_of_the_corn:after {
+  content:'';
+  width: 100px;
+  aspect-ratio: 1 / 1;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-image:
+    url('https://contentservice.mc.reyrey.net/image_v1.0.0/?id=e8c0b26d-1fb6-5c14-b114-3287f0188085&637970316227071700');
+  background-size: 300px 100px;
+  border-radius: 0 0 15% 15%;
+  pointer-events: none;
+  animation: bounce .9s steps(3) infinite alternate;
+}
+@keyframes bounce {
+  100% { 
+    bottom: 15px;
+    background-position: -300px 0; 
+  }
+}
+
+.game_button {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 0;
+  border-left: 8px solid black;
+  border-top: 8px solid black;
+  background: linear-gradient(to bottom left, transparent 40%, black 40% 60%, transparent 60%);
+  opacity: .5;
+}
+.game_button:hover {
+  opacity: 1;
+}
+.button_left {
+  transform: translateX(-75%) rotate(-45deg) scale(.35);
+}
+.button_right {
+  transform: translateX(75%) rotate(135deg) scale(.35);
+}
+.button_top {
+  transform: translateY(-75%) rotate(45deg) scale(.35);
+}
+.button_bottom {
+  transform: translateY(75%) rotate(-135deg) scale(.35);
+}
+
+.maze_block {
+  width: 100px;
+  aspect-ratio: 1 / 1;
+  float: left;
+  position: relative;
+}
+
+.maze_block.path {
+
+}
+.maze_block.corn {
+  transform-origin: 50% 100%;
+  transform: scale(0);
+  animation: corn 1s linear forwards;
+  z-index: 500;
+}
+@keyframes corn {
+  100% { transform: scale(1); }
+}
+.maze_block.corn:before {
+  content:'';
+  width: 100%;
+  aspect-ratio: 1 / 1.25;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(100% 10% at 50% 100%, rgba(0,0,0,.25), transparent 50%),
+    url('https://contentservice.mc.reyrey.net/image_v1.0.0/?id=5c73c907-58f9-5594-9f2f-b827c570eb19&637967816130085816');
+  background-size: 100% 100%;
+  border-radius: 0 0 15% 15%;
+  filter: brightness(0);
+  transform-origin: 50% 100%;
+  transform: skewX(45deg) scaleY(.5);
+  opacity: .25;
+  z-index: 500;
+  pointer-events: none;
+}
+.maze_block.corn:after {
+  content:'';
+  width: 100%;
+  aspect-ratio: 1 / 1.25;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(100% 10% at 50% 100%, rgba(0,0,0,.25), transparent 50%),
+    url('https://contentservice.mc.reyrey.net/image_v1.0.0/?id=5c73c907-58f9-5594-9f2f-b827c570eb19&637967816130085816');
+  background-size: 100% 100%;
+  border-radius: 0 0 15% 15%;
+  z-index: 500;
+  pointer-events: none;
+}
+.sway:before {
+  transform-origin: 50% 100%;
+  animation: sway2 2s linear infinite;
+}
+@keyframes sway2 {
+  25% { transform: skewX(48deg) scaleY(.5); }
+  75% { transform: skewX(43deg) scaleY(.5); }
+}
+
+.sway:after {
+  transform-origin: 50% 100%;
+  animation: sway 2s linear infinite;
+}
+@keyframes sway {
+  25% { transform: skewX(3deg); }
+  75% { transform: skewX(-3deg); }
+}
+
+.path_startpoint:before {
+  content: '';
+  width: 100%;
+  aspect-ratio: 1 / 2;
+  background-image: 
+    url('https://www.transparenttextures.com/patterns/asfalt-dark.png'),
+    linear-gradient(to top, #D8A57C 50%, transparent);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
+}
+.path_endpoint:before {
+  content: '';
+  width: 200%;
+  aspect-ratio: 2 / 1;
+  background-image: 
+    url('https://www.transparenttextures.com/patterns/asfalt-dark.png'),
+    linear-gradient(to right, #D8A57C 50%, transparent);
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.path_dead:after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: url('https://contentservice.mc.reyrey.net/image_v1.0.0/?id=a45155f5-5c58-59fc-bd8b-1115c6fe11b7&637969653820978410');
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.path_dead:before {
+  content:'';
+  width: 100%;
+  aspect-ratio: 1 / 1.25;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-image: 
+    url('https://contentservice.mc.reyrey.net/image_v1.0.0/?id=a45155f5-5c58-59fc-bd8b-1115c6fe11b7&637969653820978410');
+  background-size: 100% 100%;
+  border-radius: 0 0 15% 15%;
+  filter: brightness(0);
+  transform-origin: 50% 100%;
+  transform: skewX(45deg) scaleY(.5);
+  opacity: .25;
+}
